@@ -1,8 +1,7 @@
 const Restaurant = require('./restaurant.js')
-
-Restaurant.init();;
-
-const kfc = new Restaurant('kfc', 'http://http://placeimg.com/640/480/nature.org',5)
+const Item = require('./item.js')
+const Menu = require('./menu.js')
 
 
-module.exports = 
+
+module.exports = {Restaurant,Menu,Item}
