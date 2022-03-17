@@ -6,6 +6,8 @@ const db = require('better-sqlite3')('./db-sb-sql.sqlite')
 // improting the database
 
 class Menu {
+    static all = []
+
     static init = function () {// references to any menu class instance created
         db.prepare('CREATE TABLE IF NOT EXISTS menus (id INTEGER PRIMARY KEY, restaurant_id INTEGER ,title TEXT);').run()
     }
@@ -25,11 +27,25 @@ class Menu {
             const info = insert.run(this.restaurant_id, this.title)
             this.id = info.lastInsertRowid       
         }
+        Menu.all.push(this)
     }
 
     addItem(item) {
         if (!(item instanceof Item)) throw Error("can only add Items")
         this.items.push(item)
+    }
+
+
+    update(updates) {
+        this.title     = updates.title     || this.title
+        const update = db.prepare('UPDATE menus SET title=? WHERE id=?;')
+        update.run(this.title, this.id)
+    }
+
+    delete() {
+        db.prepare('DELETE FROM menus WHERE id = ?;').run(this.id)
+        const index = Menu.all.indexOf(this)
+        Menu.all.splice(index, 1)
     }
 }
 
