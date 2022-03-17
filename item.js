@@ -19,3 +19,10 @@ class Item {
 }
 
 module.exports = Item
+
+//new Item(1,"Jack Daniels chicken and fries",13)
+//new Item(5,"Fries",2)
+//new Item(3,"cheesecake",4)
+//new Item(4,"Fanta",1)
+//new Item(5,"Nachos",4)
+//new Item(2,"Hawaian bread rolls",3)

@@ -1,15 +1,16 @@
 const Item = require('./item.js')
+const Restaurant = require('./restaurant.js')
 //importing item object
 
 const db = require('better-sqlite3')('./db-sb-sql.sqlite')
 // improting the database
 
 class Menu {
-    static init = function () {
+    static init = function () {// references to any menu class instance created
         db.prepare('CREATE TABLE IF NOT EXISTS menus (id INTEGER PRIMARY KEY, restaurant_id INTEGER ,title TEXT);').run()
     }
 
-    constructor(restaurant_id, title, id) {
+    constructor(restaurant_id, title, id) { // always need the restaurant_id to associate the menu with it's restaurant
         this.restaurant_id = restaurant_id
         this.title = title
         this.items = []
@@ -34,3 +35,9 @@ class Menu {
 
 
 module.exports = Menu
+
+//new Menu(1, "Sides")
+//new Menu(1,"Sides")
+//new Menu(1, "Desserts")
+//new Menu(1, "Drinks")
+//^ this enabled me to add the menu titles with the corresponding restaurant_id

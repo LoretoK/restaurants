@@ -23,4 +23,3 @@ Restaurant.init();
 // menu.addItem(item)
 // restaurant.addMenu(menu)
 
-console.log(Restaurant.all)
