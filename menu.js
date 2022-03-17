@@ -36,16 +36,19 @@ class Menu {
     }
 
 
-    update(updates) {
-        this.title     = updates.title     || this.title
-        const update = db.prepare('UPDATE menus SET title=? WHERE id=?;')
+    update(updates) {// a function we can call with an object
+        this.title     = updates.title     || this.title // assigning this title to be the updates title OR if that isn't set it defaults to whatever the current title is
+        const update = db.prepare('UPDATE menus SET title=? WHERE id=?;') //update statement where the update of the title occurs where the id is the id
         update.run(this.title, this.id)
     }
 
     delete() {
         db.prepare('DELETE FROM menus WHERE id = ?;').run(this.id)
+        //^ call delete on an instance of a menu and then removes intance from the database
         const index = Menu.all.indexOf(this)
+        //^ finds itself in the menu array
         Menu.all.splice(index, 1)
+        //removes itself from the array
     }
 }
 
